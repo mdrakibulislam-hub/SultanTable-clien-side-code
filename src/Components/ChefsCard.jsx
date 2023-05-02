@@ -10,7 +10,7 @@ const ChefsCard = ({ chef }) => {
             <p>Origin: {origin}</p>
             <p>Total likes: {likes}</p>
             <p>Total Recipe: {recipes.length}</p>
-            <Link className='bg-[#FFC700] p-2 w-full rounded-md text-center btn font-medium text-black hover:text-white border-none' ><button>View Recipes</button></Link>
+            <Link to={`/alldata/${id}`} className='bg-[#FFC700] p-2 w-full rounded-md text-center btn font-medium text-black hover:text-white border-none' ><button>View Recipes</button></Link>
         </div>
     );
 };

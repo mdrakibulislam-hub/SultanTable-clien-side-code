@@ -28,7 +28,7 @@ const Navbar = () => {
                     </div>
                     <a className="text-2xl font-bold">SultanTable</a>
                 </div>
-                <div className="navbar-center hidden lg:flex">
+                <div className="navbar-end hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         <li><a>Home</a></li>
                         <li tabIndex={0}>
@@ -41,9 +41,7 @@ const Navbar = () => {
                         <li><a>User</a></li>
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <a className="btn">Get started</a>
-                </div>
+
             </div>
 
 
