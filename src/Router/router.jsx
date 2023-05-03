@@ -3,6 +3,7 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home";
 import ChefProfile from "../Pages/ChefsProfile/ChefProfile";
 import Login from "../Pages/Login/Login";
+import Registration from "../Pages/Registration/Registration";
 
 
 const router = createBrowserRouter([{
@@ -11,7 +12,8 @@ const router = createBrowserRouter([{
     children: [
         { path: '/', element: <Home></Home> },
         { path: `/alldata/:id`, element: <ChefProfile></ChefProfile> },
-        { path: `/login`, element: <Login></Login> }
+        { path: `/login`, element: <Login></Login> },
+        { path: `/registration`, element: <Registration></Registration> }
     ]
 }])
 

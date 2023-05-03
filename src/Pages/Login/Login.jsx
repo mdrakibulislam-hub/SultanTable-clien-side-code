@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaGoogle, FaGithub } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -66,12 +67,12 @@ const Login = () => {
                 <p className="mt-8 text-xs font-light text-center text-gray-700">
                     {" "}
                     Don't have an account?{" "}
-                    <a
-                        href="#"
+                    <Link
+                        to="/Registration"
                         className="font-medium text-purple-600 hover:underline"
                     >
                         Sign up
-                    </a>
+                    </Link>
                 </p>
             </div>
         </div>
