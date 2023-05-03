@@ -1,23 +1,33 @@
 import React, { useContext, useState } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const Registration = () => {
+
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
     const [photoURL, setPhotoURL] = useState('')
 
-    const { createUserHandler, setUser } = useContext(AuthContext);
+
+    const { createUserHandler, setUser, user } = useContext(AuthContext);
 
     const handleSignUp = (event) => {
         event.preventDefault();
-        createUserHandler(email, password).then(result => setUser(result.user)).catch(error => console.log(error))
+        createUserHandler(email, password).then(result => {
+            setUser(result.user)
+            navigate("/")
+
+        })
+            .catch(error => console.log(error))
     }
 
-    console.log(email, password, name, photoURL);
+    if (user) {
+        return <Navigate to="/" ></Navigate>;
+    }
 
     return (
         <div>

@@ -1,29 +1,48 @@
 import React, { useContext, useState } from 'react';
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const Login = () => {
+
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    console.log('login page location', location)
+    const from = location.state?.from?.pathname || '/'
+
     const { setUser, handleFormLogin, handleGoogleLogin, handleGithubLogin } = useContext(AuthContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
 
     const handleLogin = (event) => {
         event.preventDefault();
-        handleFormLogin(email, password).then(resut => console.log("success is", resut)).catch(error => console.log(error))
+        handleFormLogin(email, password).then(result => {
+            console.log("success is", result)
+            navigate(from, { replace: true })
+        })
+            .catch(error => console.log(error))
     }
 
     const handleGoogleSignInClick = () => {
-        handleGoogleLogin().then(result => setUser(result.user)).catch(error => console.log("error is", error))
+        handleGoogleLogin().then(result => {
+            setUser(result.user)
+            navigate(from, { replace: true })
+        })
+            .catch(error => console.log("error is", error))
     }
 
     const handleGithubSignInClick = () => {
-        handleGithubLogin().then(result => setUser(result.user)).catch(error => console.log("error is", error))
+        handleGithubLogin().then(result => {
+            setUser(result.user)
+            navigate(from, { replace: true })
+        })
+            .catch(error => console.log("error is", error))
     }
 
 
 
-    console.log(email, password);
+
 
     return (
         <div className="relative flex flex-col justify-center my-16 overflow-hidden">

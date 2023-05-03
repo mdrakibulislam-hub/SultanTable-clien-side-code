@@ -1,5 +1,5 @@
-import React, { createContext, useState } from 'react';
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import React, { createContext, useEffect, useState } from 'react';
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import app from '../Firebase/firebase.confif';
 
 export const AuthContext = createContext(null)
@@ -7,6 +7,7 @@ export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const auth = getAuth(app)
+    const [loading, setLoading] = useState(true);
     const googleAuthProvider = new GoogleAuthProvider();
     const githubAuthProvider = new GithubAuthProvider();
 
@@ -27,8 +28,24 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, githubAuthProvider);
     }
 
-    const authInfo = { setUser, handleFormLogin, handleGoogleLogin, handleGithubLogin, createUserHandler }
-    console.log(user?.displayName);
+    const handleLogout = () => {
+        return signOut(auth)
+    }
+
+    const authInfo = { user, setUser, handleFormLogin, handleGoogleLogin, handleGithubLogin, createUserHandler, handleLogout }
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, loggedUser => {
+            console.log('logged in user inside auth state observer', loggedUser)
+            setUser(loggedUser);
+            setLoading(false);
+        })
+
+        return () => {
+            unsubscribe();
+        }
+    }, [])
+    // console.log(user?.displayName);
 
     return (
         <>

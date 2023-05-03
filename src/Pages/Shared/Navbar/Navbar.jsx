@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Navbar = () => {
+
+    const { handleLogout, user, setUser } = useContext(AuthContext);
+
+    const handleLogoutButton = () => {
+        handleLogout().then(() => console.log("logggggggggged out", user)).catch(error => console.log("error is", error))
+    }
+
+
+
     return (
         <div className=' bg-[#FFE382] py-2'>
 
@@ -32,15 +42,17 @@ const Navbar = () => {
                 <div className="navbar-end hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         <li><Link to="/">Home</Link></li>
-                        <li>
-                            <a>
-                                Blog
-                            </a>
-
-                        </li>
+                        <li><a>Blog</a></li>
                         <li><a>Favourite Recipes</a></li>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/Registration">Sign Up</Link></li>
+
+
+                        {user && <li><a>{user.email}</a></li>}
+
+                        {user ? <li><button onClick={handleLogoutButton}>Logout</button></li> : <li><Link to="/login">Login</Link></li>}
+
+
+                        {!user && <li><Link to="/Registration">Sign Up</Link></li>}
+
                     </ul>
                 </div>
 
