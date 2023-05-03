@@ -39,7 +39,7 @@ const Navbar = () => {
 
                         </li>
                         <li><a>Favourite Recipes</a></li>
-                        <li><a>User</a></li>
+                        <li><Link to="/login">Login</Link></li>
                     </ul>
                 </div>
 
