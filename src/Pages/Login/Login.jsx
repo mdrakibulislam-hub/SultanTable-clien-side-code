@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Login = () => {
+    const { setUser, handleFormLogin, handleGoogleLogin } = useContext(AuthContext)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('');
+
+
+
+    const handleGoogleSignInClick = () => {
+        handleGoogleLogin().then(res => console.log("success is", res)).catch(err => console.log("error is", err))
+    }
+
+
+
+    console.log(email, password);
+
     return (
         <div className="relative flex flex-col justify-center my-16 overflow-hidden">
             <div className="w-full p-6 m-auto bg-white rounded-md border lg:max-w-xl">
@@ -18,6 +33,7 @@ const Login = () => {
                             Email
                         </label>
                         <input
+                            onChange={e => setEmail(e.target.value)}
                             type="email"
                             id='email'
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -31,6 +47,7 @@ const Login = () => {
                             Password
                         </label>
                         <input
+                            onChange={e => setPassword(e.target.value)}
                             type="password"
                             id='password'
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -53,7 +70,7 @@ const Login = () => {
                 <div className='flex gap-4 justify-center items-center my-8'>
 
 
-                    <button className='flex gap-2 items-center text-white btn bg-blue-700 hover:bg-blue-800 border-none'>
+                    <button onClick={handleGoogleSignInClick} className='flex gap-2 items-center text-white btn bg-blue-700 hover:bg-blue-800 border-none'>
                         <span>Login with</span> <FaGoogle></FaGoogle>
                     </button>
 
