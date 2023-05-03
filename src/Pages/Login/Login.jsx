@@ -4,14 +4,21 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const Login = () => {
-    const { setUser, handleFormLogin, handleGoogleLogin } = useContext(AuthContext)
+    const { setUser, handleFormLogin, handleGoogleLogin, handleGithubLogin } = useContext(AuthContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
 
-
+    const handleLogin = (event) => {
+        event.preventDefault();
+        handleFormLogin(email, password).then(resut => console.log("success is", resut)).catch(error => console.log(error))
+    }
 
     const handleGoogleSignInClick = () => {
-        handleGoogleLogin().then(res => console.log("success is", res)).catch(err => console.log("error is", err))
+        handleGoogleLogin().then(result => setUser(result.user)).catch(error => console.log("error is", error))
+    }
+
+    const handleGithubSignInClick = () => {
+        handleGithubLogin().then(result => setUser(result.user)).catch(error => console.log("error is", error))
     }
 
 
@@ -24,7 +31,7 @@ const Login = () => {
                 <h1 className="text-3xl font-semibold text-center text-black dark:text-white">
                     Login
                 </h1>
-                <form className="mt-6">
+                <form onSubmit={handleLogin} className="mt-6">
                     <div className="mb-2">
                         <label
                             htmlFor="email"
@@ -60,7 +67,7 @@ const Login = () => {
                         Forget Password?
                     </a>
                     <div className="mt-6">
-                        <button className="btn border-none w-full px-4 py-2 tracking-wide text-black transition-colors duration-200 transform bg-[#FFE382] rounded-md hover:text-white">
+                        <button type='submit' className="btn border-none w-full px-4 py-2 tracking-wide text-black transition-colors duration-200 transform bg-[#FFE382] rounded-md hover:text-white">
                             Login
                         </button>
                     </div>
@@ -70,11 +77,11 @@ const Login = () => {
                 <div className='flex gap-4 justify-center items-center my-8'>
 
 
-                    <button onClick={handleGoogleSignInClick} className='flex gap-2 items-center text-white btn bg-blue-700 hover:bg-blue-800 border-none'>
+                    <button onClick={handleGoogleSignInClick} className='flex tooltip gap-2 items-center text-white btn bg-blue-700 hover:bg-blue-800 border-none' data-tip="Login with Google">
                         <span>Login with</span> <FaGoogle></FaGoogle>
                     </button>
 
-                    <button className='flex gap-2 items-center text-white btn bg-gray-800 hover:bg-gray-900 border-none'>
+                    <button onClick={handleGithubSignInClick} className='flex tooltip gap-2 items-center text-white btn bg-gray-800 hover:bg-gray-900 border-none' data-tip="Login with GitHub">
                         <span>Login with</span> <FaGithub></FaGithub>
                     </button>
 

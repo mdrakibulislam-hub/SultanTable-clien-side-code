@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Registration = () => {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [name, setName] = useState('')
+    const [photoURL, setPhotoURL] = useState('')
+
+    const { createUserHandler, setUser } = useContext(AuthContext);
+
+    const handleSignUp = (event) => {
+        event.preventDefault();
+        createUserHandler(email, password).then(result => setUser(result.user)).catch(error => console.log(error))
+    }
+
+    console.log(email, password, name, photoURL);
+
     return (
         <div>
             <div className="relative flex flex-col justify-center my-16 overflow-hidden">
@@ -10,7 +26,7 @@ const Registration = () => {
                     <h1 className="text-3xl font-semibold text-center text-black dark:text-white">
                         Sign up
                     </h1>
-                    <form className="mt-6">
+                    <form onSubmit={handleSignUp} className="mt-6">
 
 
 
@@ -22,6 +38,7 @@ const Registration = () => {
                                 Name
                             </label>
                             <input
+                                onChange={e => setName(e.target.value)}
                                 type="text"
                                 id='name'
                                 name='name'
@@ -38,6 +55,7 @@ const Registration = () => {
                                 Email
                             </label>
                             <input
+                                onChange={e => setEmail(e.target.value)}
                                 type="email"
                                 id='email'
                                 name='email'
@@ -54,6 +72,7 @@ const Registration = () => {
                                 Password
                             </label>
                             <input
+                                onChange={e => setPassword(e.target.value)}
                                 type="password"
                                 id='password'
                                 name='password'
@@ -71,6 +90,7 @@ const Registration = () => {
                                 Photo URL
                             </label>
                             <input
+                                onChange={e => setPhotoURL(e.target.value)}
                                 type="text"
                                 id='photourl'
                                 name='photourl'
@@ -80,7 +100,7 @@ const Registration = () => {
 
 
                         <div className="mt-6">
-                            <button className="btn border-none w-full px-4 py-2 tracking-wide text-black transition-colors duration-200 transform bg-[#FFE382] rounded-md hover:text-white">
+                            <button type='submit' className="btn border-none w-full px-4 py-2 tracking-wide text-black transition-colors duration-200 transform bg-[#FFE382] rounded-md hover:text-white">
                                 Sign up
                             </button>
                         </div>
