@@ -7,7 +7,7 @@ const HomeBanner = () => {
 
             <div className='text-center my-auto'>
                 <p className='text-2xl text-white'>Discovering the Magic of</p>
-                <h1 className='text-uppercase font-bold text-6xl uppercase tracking-wide hover:tracking-widest transition-all ease-in inline-block text-[#FFE382]'>Arabia</h1>
+                <h1 className='text-uppercase font-bold text-6xl uppercase tracking-widest transition-all ease-in inline-block text-[#FFE382]'>Arabia</h1>
                 <p className='text-lg italic text-white'>&quot; A blog about the food, <br></br>culture, and
                     people of the Arabian world &quot;
                 </p>

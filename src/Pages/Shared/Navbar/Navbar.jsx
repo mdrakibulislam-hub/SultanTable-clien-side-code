@@ -16,7 +16,7 @@ const Navbar = () => {
         <div className=' bg-[#FFE382] py-2'>
 
 
-            <div className="navbar main-container bg-[#FFE382]">
+            <div className="flex items-center justify-between main-container bg-[#FFE382]">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -43,10 +43,15 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1">
                         <li><Link to="/">Home</Link></li>
                         <li><a>Blog</a></li>
-                        <li><a>Favourite Recipes</a></li>
+                        <li><a>Favourite</a></li>
 
+                        {user && <li><figure className='w-20 h-fit'><img className='w-full rounded-full' src={user.photoURL && user.photoURL} alt="" /></figure></li>}
 
-                        {user && <li><a>{user.email}</a></li>}
+                        {user && <li>
+
+                            <a>{user.email && user.email}</a>
+
+                        </li>}
 
                         {user ? <li><button onClick={handleLogoutButton}>Logout</button></li> : <li><Link to="/login">Login</Link></li>}
 
