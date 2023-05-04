@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
+
 
 const Login = () => {
 
@@ -13,7 +14,7 @@ const Login = () => {
 
 
 
-    const { setUser, handleFormLogin, handleGoogleLogin, handleGithubLogin } = useContext(AuthContext)
+    const { user, setUser, handleFormLogin, handleGoogleLogin, handleGithubLogin } = useContext(AuthContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
 
@@ -26,6 +27,7 @@ const Login = () => {
     // form validation errors
     const [emailError, setEmailError] = useState("")
     const [passError, setPassError] = useState("")
+    const [loginError, setLoginError] = useState("")
 
 
     // login funcitonalitys 
@@ -39,8 +41,9 @@ const Login = () => {
         handleFormLogin(email, password).then(result => {
             console.log("success is", result)
             navigate(from, { replace: true })
+            setLoginError("")
         })
-            .catch(error => console.log(error))
+            .catch(error => setLoginError(error.message))
         setEmailError("")
         setPassError("")
     }
@@ -63,7 +66,9 @@ const Login = () => {
 
 
 
-
+    if (user) {
+        return <Navigate to="/" ></Navigate>;
+    }
 
     return (
         <div className="relative flex flex-col justify-center my-16 overflow-hidden">
@@ -119,6 +124,11 @@ const Login = () => {
                             Login
                         </button>
                     </div>
+
+                    <p className='text-red-700'><small>
+                        {loginError ? loginError : ""}
+                    </small></p>
+
                 </form>
 
 
@@ -132,6 +142,7 @@ const Login = () => {
                     <button onClick={handleGithubSignInClick} className='flex tooltip gap-2 items-center text-white btn bg-gray-800 hover:bg-gray-900 border-none' data-tip="Login with GitHub">
                         <span>Login with</span> <FaGithub></FaGithub>
                     </button>
+
 
 
                 </div>

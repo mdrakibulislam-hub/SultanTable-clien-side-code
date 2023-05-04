@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
+import { Navigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 
 const UserProfile = () => {
@@ -27,6 +28,13 @@ const UserProfile = () => {
     }
 
     console.log(name, photoURL);
+
+
+
+
+    if (!user) {
+        return <Navigate to="/login" ></Navigate>;
+    }
 
     return (
         <div className='main-container my-8'>
