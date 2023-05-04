@@ -3,7 +3,7 @@ import React from 'react';
 
 const HomeBanner = () => {
     return (
-        <div className='main-container home-banner-container bg-no-repeat bg-cover mt-8 rounded-lg py-32'>
+        <div className='main-container home-banner-container bg-no-repeat bg-cover bg-fixed mt-8 rounded-lg py-32'>
 
             <div className='text-center my-auto'>
                 <p className='text-2xl text-white'>Discovering the Magic of</p>
