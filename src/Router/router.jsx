@@ -9,6 +9,7 @@ import ErrorPage from "../Components/ErrorPage";
 import Blog from "../Pages/Blog/Blog";
 import UserProfile from "../Pages/UserProfile/UserProfile";
 import About from "../Pages/About/About";
+import ForgetPassword from "../Pages/ForgetPassword/ForgetPassword";
 
 
 const router = createBrowserRouter([{
@@ -22,7 +23,8 @@ const router = createBrowserRouter([{
         { path: '/registration', element: <Registration></Registration> },
         { path: '/blog', element: <Blog></Blog> },
         { path: '/userprofile', element: <UserProfile></UserProfile> },
-        { path: '/about', element: <About></About> }
+        { path: '/about', element: <About></About> },
+        { path: '/forgetpassword', element: <ForgetPassword></ForgetPassword> }
     ]
 }])
 
