@@ -5,7 +5,7 @@ import toast, { Toaster } from 'react-hot-toast';
 const RecipesCard = ({ recipe }) => {
     console.log(recipe);
     const { name, ingredients, method, image, rating } = recipe;
-    const addToFavBtnHandler = () => toast.success('Bookmark Added');
+    const addToFavBtnHandler = () => toast.success(`${name} Added to favourites`);
 
     return (
         <div className='flex gap-8 items-center p-8 border rounded-lg'>
