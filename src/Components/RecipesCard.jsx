@@ -1,6 +1,7 @@
 import React from 'react';
 import StarRating from './StarRating';
 import toast, { Toaster } from 'react-hot-toast';
+import LazyLoad from 'react-lazy-load';
 
 const RecipesCard = ({ recipe }) => {
     console.log(recipe);
@@ -9,7 +10,9 @@ const RecipesCard = ({ recipe }) => {
 
     return (
         <div className='flex gap-8 items-center p-8 border rounded-lg'>
-            <img className='w-2/12 h-fit rounded-md' src={image} alt="" />
+            <LazyLoad height={150} width={150} threshold={0.95}>
+                <img className='rounded-md' src={image} alt="" />
+            </LazyLoad>
             <div className='flex flex-col w-full gap-4'>
                 <div>
                     <h1 className='font-bold text-3xl'>{name}</h1>

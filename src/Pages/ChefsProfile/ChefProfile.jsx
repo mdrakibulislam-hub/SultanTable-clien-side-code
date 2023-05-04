@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import RecipesCard from '../../Components/RecipesCard';
+import LazyLoad from 'react-lazy-load';
+
 
 const ChefProfile = () => {
     const { id } = useParams();
@@ -12,9 +14,12 @@ const ChefProfile = () => {
 
     return (
         <div className='main-container'>
+
             <div className='flex items-center gap-8 my-8 border-b py-4'>
 
-                <img className='w-4/12 h-fit rounded-full' src={image} alt="" />
+                <LazyLoad width={450} threshold={0.95}>
+                    <img className='rounded-full' src={image} alt="" />
+                </LazyLoad>
 
                 <div>
                     <h1 className='font-bold text-3xl'>{name}</h1>
