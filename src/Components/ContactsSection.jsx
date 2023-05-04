@@ -7,7 +7,7 @@ const ContactsSection = () => {
         <div className='main-container my-16'>
 
 
-            <div className='grid grid-cols-2'>
+            <div className='grid mx-8 md:grid-cols-2 gap-8'>
 
 
                 <div className='flex flex-col gap-4 my-auto'>

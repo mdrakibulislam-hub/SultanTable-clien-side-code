@@ -16,7 +16,7 @@ const Blog = () => {
 
 
 
-            <div className='main-container my-12 grid grid-cols-2 gap-8'>
+            <div className='main-container my-12 grid md:grid-cols-2 gap-8'>
 
 
 

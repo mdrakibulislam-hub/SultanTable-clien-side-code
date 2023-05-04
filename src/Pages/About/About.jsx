@@ -6,7 +6,7 @@ const About = () => {
         <div className='main-container'>
             <h1 className='font-semibold text-3xl text-center my-8'>About SultanTable</h1>
             <hr className='w-2/3 mx-auto' />
-            <p className='w-1/2 mx-auto text-justify my-8'>
+            <p className='w-10/12 md:w-1/2 mx-auto text-justify my-8'>
                 Welcome to SultanTable, a food recipe blog dedicated to providing you with delicious and healthy recipes from around the world.
 
                 Our mission at SultanTable is to help you discover new and exciting recipes that will inspire you to get creative in the kitchen. We believe that food is not only about nourishment but also about enjoyment and connection, and we want to share that passion with you.

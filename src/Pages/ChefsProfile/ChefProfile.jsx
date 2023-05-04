@@ -8,14 +8,14 @@ const ChefProfile = () => {
     const { id } = useParams();
     const [chef, setChef] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/alldata/${id}`).then(res => res.json()).then(data => setChef(data[0]))
+        fetch(`https://b7a10-chef-recipe-hunter-server-sid-rakibulislamborkan-gmailcom.vercel.app/alldata/${id}`).then(res => res.json()).then(data => setChef(data[0]))
     }, [id])
     const { name, image, likes, experience, bio, origin, recipes } = chef
 
     return (
         <div className='main-container'>
 
-            <div className='flex items-center gap-8 my-8 border-b py-4'>
+            <div className='flex flex-wrap md:flex-nowrap items-center gap-8 my-8 border-b py-4'>
 
                 <LazyLoad width={450} threshold={0.95}>
                     <img className='rounded-full' src={image} alt="" />

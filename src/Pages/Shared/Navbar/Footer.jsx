@@ -2,8 +2,8 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div className='bg-[#FFE382]'>
-            <div className='main-container bg-[#FFE382] py-8 mt-16 flex justify-between'>
+        <div className='bg-[#FFE382] p-6 md:p-0'>
+            <div className='main-container bg-[#FFE382] py-8 mt-16 flex flex-wrap gap-6 justify-between'>
                 <div>
                     <h1 className='font-bold text-xl'>Sections</h1>
                     <ul className='text-lg flex flex-col gap-1 mt-2'>

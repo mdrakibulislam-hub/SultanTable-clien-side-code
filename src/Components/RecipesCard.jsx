@@ -9,7 +9,7 @@ const RecipesCard = ({ recipe }) => {
     const addToFavBtnHandler = () => toast.success(`${name} Added to favourites`);
 
     return (
-        <div className='flex gap-8 items-center p-8 border rounded-lg'>
+        <div className='flex flex-wrap md:flex-nowrap gap-8 items-center p-8 border rounded-lg'>
             <LazyLoad height={150} width={150} threshold={0.95}>
                 <img className='rounded-md' src={image} alt="" />
             </LazyLoad>
