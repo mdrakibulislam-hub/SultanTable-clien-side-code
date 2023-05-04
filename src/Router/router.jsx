@@ -6,6 +6,7 @@ import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 import PrivetRoute from "./PrivetRoute";
 import ErrorPage from "../Components/ErrorPage";
+import Blog from "../Pages/Blog/Blog";
 
 
 const router = createBrowserRouter([{
@@ -16,7 +17,8 @@ const router = createBrowserRouter([{
         { path: '/', element: <Home></Home> },
         { path: `/alldata/:id`, element: <PrivetRoute><ChefProfile></ChefProfile></PrivetRoute> },
         { path: `/login`, element: <Login></Login> },
-        { path: `/registration`, element: <Registration></Registration> }
+        { path: `/registration`, element: <Registration></Registration> },
+        { path: `/blog`, element: <Blog></Blog> }
     ]
 }])
 

@@ -42,7 +42,7 @@ const Navbar = () => {
                 <div className=" hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         <li><Link to="/">Home</Link></li>
-                        <li><a>Blog</a></li>
+                        <li><Link to="/blog">Blog</Link></li>
                         <li><a>Favourite</a></li>
 
                         {user && <li><figure className='w-20 h-fit'><img className='w-full rounded-full' src={user.photoURL && user.photoURL} alt="" /></figure></li>}
