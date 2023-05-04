@@ -1,9 +1,12 @@
 import React from 'react';
 import StarRating from './StarRating';
+import toast, { Toaster } from 'react-hot-toast';
 
 const RecipesCard = ({ recipe }) => {
     console.log(recipe);
-    const { name, ingredients, method, image, rating } = recipe
+    const { name, ingredients, method, image, rating } = recipe;
+    const addToFavBtnHandler = () => toast.success('Bookmark Added');
+
     return (
         <div className='flex gap-8 items-center p-8 border rounded-lg'>
             <img className='w-2/12 h-fit rounded-md' src={image} alt="" />
@@ -17,9 +20,10 @@ const RecipesCard = ({ recipe }) => {
                     <div className='flex gap-2 items-center'>
                         <StarRating rating={rating}></StarRating><p>{rating}</p>
                     </div>
-                    <button className='btn bg-[#FFD541] border-none text-black hover:text-white'>Add to favourite</button>
+                    <button onClick={addToFavBtnHandler} className='btn bg-[#FFD541] border-none text-black hover:text-white'>Add to favourite</button>
                 </div>
             </div>
+            <Toaster />
         </div>
     );
 };
