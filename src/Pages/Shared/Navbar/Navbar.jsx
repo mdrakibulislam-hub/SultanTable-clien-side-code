@@ -81,7 +81,7 @@ const Navbar = () => {
 
 
 
-                        {user && <li><figure className='w-20 h-fit'><img className='w-full rounded-full' src={user.photoURL && user.photoURL} alt="" /></figure></li>}
+                        {user && <li><Link to="/userprofile"><figure className='w-20 h-fit'><img className='w-full rounded-full' src={user.photoURL && user.photoURL} alt="" /></figure></Link></li>}
 
                         {user && <li>
 
@@ -129,6 +129,18 @@ const Navbar = () => {
                             </li>
 
                         }
+
+
+                        <li>
+                            <NavLink
+                                to="/about"
+                                className={({ isActive, isPending }) =>
+                                    isPending ? "pending" : isActive ? "activeLink" : ""
+                                }
+                            >
+                                About
+                            </NavLink>
+                        </li>
 
                     </ul>
                 </div>

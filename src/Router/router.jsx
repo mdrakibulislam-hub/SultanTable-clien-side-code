@@ -7,6 +7,8 @@ import Registration from "../Pages/Registration/Registration";
 import PrivetRoute from "./PrivetRoute";
 import ErrorPage from "../Components/ErrorPage";
 import Blog from "../Pages/Blog/Blog";
+import UserProfile from "../Pages/UserProfile/UserProfile";
+import About from "../Pages/About/About";
 
 
 const router = createBrowserRouter([{
@@ -16,9 +18,11 @@ const router = createBrowserRouter([{
     children: [
         { path: '/', element: <Home></Home> },
         { path: `/alldata/:id`, element: <PrivetRoute><ChefProfile></ChefProfile></PrivetRoute> },
-        { path: `/login`, element: <Login></Login> },
-        { path: `/registration`, element: <Registration></Registration> },
-        { path: `/blog`, element: <Blog></Blog> }
+        { path: '/login', element: <Login></Login> },
+        { path: '/registration', element: <Registration></Registration> },
+        { path: '/blog', element: <Blog></Blog> },
+        { path: '/userprofile', element: <UserProfile></UserProfile> },
+        { path: '/about', element: <About></About> }
     ]
 }])
 
