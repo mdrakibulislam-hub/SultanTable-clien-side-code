@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
-    const authInfo = { user, setUser, handleFormLogin, handleGoogleLogin, handleGithubLogin, createUserHandler, handleLogout }
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, loggedUser => {
@@ -45,6 +45,9 @@ const AuthProvider = ({ children }) => {
             unsubscribe();
         }
     }, [])
+
+    const authInfo = { user, setUser, handleFormLogin, handleGoogleLogin, handleGithubLogin, createUserHandler, handleLogout, loading }
+
     // console.log(user?.displayName);
 
     return (
