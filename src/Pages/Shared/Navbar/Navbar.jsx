@@ -60,7 +60,7 @@ const Navbar = () => {
 
 
 
-                            {user && <li class="tooltip tooltip-bottom" data-tip={user.displayName}>{user.photoURL && <Link to="/userprofile"><figure className='w-14 h-fit'><img className='w-full rounded-full' src={user.photoURL && user.photoURL} alt="" /></figure></Link>}</li>}
+                            {user && <li className="tooltip tooltip-bottom" data-tip={user.displayName}>{user.photoURL && <Link to="/userprofile"><figure className='w-14 h-fit'><img className='w-full rounded-full' src={user.photoURL && user.photoURL} alt="" /></figure></Link>}</li>}
 
                             {user && <li>
 
@@ -155,7 +155,7 @@ const Navbar = () => {
 
 
 
-                        {user && <li class="tooltip tooltip-bottom" data-tip={user.displayName}>{user.photoURL && <Link to="/userprofile"><figure className='w-14 h-fit'><img className='w-full rounded-full' src={user.photoURL && user.photoURL} alt="" /></figure></Link>}</li>}
+                        {user && <li className="tooltip tooltip-bottom" data-tip={user.displayName}>{user.photoURL ? <Link to="/userprofile"><figure className='w-14 h-fit'><img className='w-full rounded-full' src={user.photoURL && user.photoURL} alt="" /></figure></Link> : <Link to="/userprofile"><figure className='w-14 h-fit'><img className='w-full rounded-full' src="https://i.ibb.co/K798Km5/user.jpg" alt="" /></figure></Link>}</li>}
 
                         {user && <li>
 
