@@ -5,11 +5,13 @@ import ChefProfile from "../Pages/ChefsProfile/ChefProfile";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 import PrivetRoute from "./PrivetRoute";
+import ErrorPage from "../Components/ErrorPage";
 
 
 const router = createBrowserRouter([{
     path: '/',
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
         { path: '/', element: <Home></Home> },
         { path: `/alldata/:id`, element: <PrivetRoute><ChefProfile></ChefProfile></PrivetRoute> },
