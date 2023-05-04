@@ -11,17 +11,38 @@ const Login = () => {
     console.log('login page location', location)
     const from = location.state?.from?.pathname || '/'
 
+
+
     const { setUser, handleFormLogin, handleGoogleLogin, handleGithubLogin } = useContext(AuthContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
 
+
+    // Regurler expressions
+    const emailREGX = /\S+@\S+\.\S+/
+    const passwordREGX = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+
+
+    // form validation errors
+    const [emailError, setEmailError] = useState("")
+    const [passError, setPassError] = useState("")
+
+
+    // login funcitonalitys 
+
     const handleLogin = (event) => {
         event.preventDefault();
+
+        if (!emailREGX.test(email)) { setEmailError("Please provide a valid email address"); return }
+        if (!passwordREGX.test(password)) { setPassError("Password must contain Minimum eight characters, at least one letter and one number"); setEmailError(""); return }
+
         handleFormLogin(email, password).then(result => {
             console.log("success is", result)
             navigate(from, { replace: true })
         })
             .catch(error => console.log(error))
+        setEmailError("")
+        setPassError("")
     }
 
     const handleGoogleSignInClick = () => {
@@ -64,6 +85,9 @@ const Login = () => {
                             id='email'
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         />
+                        <p className='text-red-700'><small>
+                            {emailError ? emailError : ""}
+                        </small></p>
                     </div>
                     <div className="mb-2">
                         <label
@@ -78,6 +102,11 @@ const Login = () => {
                             id='password'
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         />
+
+                        <p className='text-red-700'><small>
+                            {passError ? passError : ""}
+                        </small></p>
+
                     </div>
                     <a
                         href="#"

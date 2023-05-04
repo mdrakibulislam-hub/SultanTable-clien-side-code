@@ -9,21 +9,52 @@ const Registration = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
     const [name, setName] = useState('')
     const [photoURL, setPhotoURL] = useState('')
+
+    // regurler expressions
+    const emailREGX = /\S+@\S+\.\S+/
+    const passwordREGX = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+
+    // form errors
+    const [nameError, setNameError] = useState("")
+    const [emailError, setEmailError] = useState("")
+    const [passError, setPassError] = useState("")
+    const [passMatchError, setPassMatchError] = useState("")
+    const [imageURLError, setImageURLError] = useState("")
+    const [alreadyInUse, setAlreadyInUse] = useState("")
 
 
     const { createUserHandler, setUser, user } = useContext(AuthContext);
 
     const handleSignUp = (event) => {
         event.preventDefault();
+        const isPasswordSame = password === confirmPassword;
+        if (!name) { setNameError("Please provide a valid name"); return }
+        else if (!emailREGX.test(email)) { setEmailError("Please provide a valid email address"); return }
+        else if (!passwordREGX.test(password)) { setPassError("Password must contain Minimum eight characters, at least one letter and one number"); return }
+        else if (!passwordREGX.test(confirmPassword)) { setPassMatchError("Password must contain Minimum eight characters, at least one letter and one number"); return }
+        else if (!isPasswordSame) { setPassMatchError("Please provide same password for both field"); return }
+        else if (!photoURL) { setImageURLError("Please provide valid photo url"); return }
+
         createUserHandler(email, password).then(result => {
             setUser(result.user)
             navigate("/")
+            setAlreadyInUse("")
 
         })
-            .catch(error => console.log(error))
+            .catch(error => setAlreadyInUse(error.message))
+
+        setNameError("")
+        setEmailError("")
+        setPassError("")
+        setPassMatchError("")
+        setImageURLError("")
+
     }
+
+    console.log(password, confirmPassword);
 
     if (user) {
         return <Navigate to="/" ></Navigate>;
@@ -54,6 +85,9 @@ const Registration = () => {
                                 name='name'
                                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                             />
+                            <p className='text-red-700'><small>
+                                {nameError ? nameError : ""}
+                            </small></p>
                         </div>
 
 
@@ -71,6 +105,9 @@ const Registration = () => {
                                 name='email'
                                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                             />
+                            <p className='text-red-700'><small>
+                                {emailError ? emailError : ""}
+                            </small></p>
                         </div>
 
 
@@ -88,7 +125,37 @@ const Registration = () => {
                                 name='password'
                                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                             />
+
+                            <p className='text-red-700'><small>
+                                {passError ? passError : ""}
+                            </small></p>
+
                         </div>
+
+
+
+
+                        <div className="mb-2">
+                            <label
+                                htmlFor="confirm-password"
+                                className="block text-sm font-semibold text-gray-800"
+                            >
+                                Confirm Password
+                            </label>
+                            <input
+                                onChange={e => setConfirmPassword(e.target.value)}
+                                type="password"
+                                id='confirm-password'
+                                name='confirmPassword'
+                                className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            />
+
+                            <p className='text-red-700'><small>
+                                {passMatchError ? passMatchError : ""}
+                            </small></p>
+
+                        </div>
+
 
 
 
@@ -106,6 +173,11 @@ const Registration = () => {
                                 name='photourl'
                                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                             />
+
+                            <p className='text-red-700'><small>
+                                {imageURLError ? imageURLError : ""}
+                            </small></p>
+
                         </div>
 
 
@@ -113,6 +185,9 @@ const Registration = () => {
                             <button type='submit' className="btn border-none w-full px-4 py-2 tracking-wide text-black transition-colors duration-200 transform bg-[#FFE382] rounded-md hover:text-white">
                                 Sign up
                             </button>
+                            <p className='text-red-700'><small>
+                                {alreadyInUse ? alreadyInUse : ""}
+                            </small></p>
                         </div>
                     </form>
 
