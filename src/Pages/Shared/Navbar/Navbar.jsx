@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Navbar = () => {
@@ -41,9 +41,45 @@ const Navbar = () => {
                 </div>
                 <div className=" hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/blog">Blog</Link></li>
-                        <li><a>Favourite</a></li>
+
+
+                        <li>
+                            <NavLink
+                                to="/"
+                                className={({ isActive, isPending }) =>
+                                    isPending ? "pending" : isActive ? "activeLink" : ""
+                                }
+                            >
+                                Home
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink
+                                to="/blog"
+                                className={({ isActive, isPending }) =>
+                                    isPending ? "pending" : isActive ? "activeLink" : ""
+                                }
+                            >
+                                Blog
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink
+                                to="/favourite"
+                                className={({ isActive, isPending }) =>
+                                    isPending ? "pending" : isActive ? "activeLink" : ""
+                                }
+                            >
+                                Favourite
+                            </NavLink>
+                        </li>
+
+
+
+
+
 
                         {user && <li><figure className='w-20 h-fit'><img className='w-full rounded-full' src={user.photoURL && user.photoURL} alt="" /></figure></li>}
 
@@ -53,10 +89,46 @@ const Navbar = () => {
 
                         </li>}
 
-                        {user ? <li><button onClick={handleLogoutButton}>Logout</button></li> : <li><Link to="/login">Login</Link></li>}
+                        {user ?
 
 
-                        {!user && <li><Link to="/Registration">Sign Up</Link></li>}
+
+                            <li><button onClick={handleLogoutButton}>Logout</button></li>
+
+
+
+
+                            :
+
+
+                            <li>
+                                <NavLink
+                                    to="/login"
+                                    className={({ isActive, isPending }) =>
+                                        isPending ? "pending" : isActive ? "activeLink" : ""
+                                    }
+                                >
+                                    Login
+                                </NavLink>
+                            </li>
+
+                        }
+
+
+                        {!user &&
+
+                            <li>
+                                <NavLink
+                                    to="/registration"
+                                    className={({ isActive, isPending }) =>
+                                        isPending ? "pending" : isActive ? "activeLink" : ""
+                                    }
+                                >
+                                    Sign Up
+                                </NavLink>
+                            </li>
+
+                        }
 
                     </ul>
                 </div>

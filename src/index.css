@@ -9,3 +9,7 @@
 .home-banner-container {
     background-image: url('/src/assets/home-banner.jpg');
 }
+
+.activeLink {
+    @apply bg-yellow-400
+}
